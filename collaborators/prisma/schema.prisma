@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Collaborator {
+  id         String    @id @default(uuid())
+  name       String
+  cpf        String    @unique
+  start_at   DateTime  @default(now())
+  end_at     DateTime?
+  created_at DateTime  @default(now())
+
+  @@map("collaborators")
+}
